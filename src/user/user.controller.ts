@@ -8,6 +8,7 @@ import {
   Param,
   Delete,
   HttpStatus,
+  HttpException,
 } from '@nestjs/common';
 // import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -34,6 +35,7 @@ export class UserController {
   })
   @ApiBearerAuth()
   create(@Body() createUserDto: CreateUserDto) {
+    throw new HttpException('自定义异常', HttpStatus.SEE_OTHER);
     return this.userservice.create();
     // return this.userService.create();
     // return 'haha';
